@@ -1,0 +1,448 @@
+[
+	{
+		"word": "ask",
+		"translation": "спрашивать",
+		"examples": [
+			"I told him he can ask me anything.",
+			"You know better than to ask."
+		]
+	},
+	{
+		"word": "answer",
+		"translation": "отвечать",
+		"examples": [
+			"We both have our sins to answer for...",
+			"Besides, I know what i must answer.",
+			"I'm not going to answer that."
+		]
+	},
+	{
+		"word": "allow",
+		"translation": "позволять",
+		"examples": [
+			"Unfortunately, I cannot allow it.",
+			"We must not allow them to succeed."
+		]
+	},
+	{
+		"word": "agree",
+		"translation": "соглашаться",
+		"examples": [
+			"We can agree that this pistol has worked.",
+			"They can't even agree on lunch.",
+			"All agree that participation is very important."
+		]
+	},
+	{
+		"word": "borrow",
+		"translation": "занимать",
+		"examples": [
+			"She said I could borrow some stuff.",
+			"I told you, you can always borrow my boxing trunks...",
+			"You can borrow anything you want."
+		]
+	},
+	{
+		"word": "believe",
+		"translation": "верить",
+		"examples": [
+			"You never know what someone might believe.",
+			"Goes against everything I believe in.",
+			"People must believe that information is true and important."
+		]
+	},
+	{
+		"word": "copy",
+		"translation": "копировать",
+		"examples": [
+			"Because we do not need your copy.",
+			"If that is of interest to you, you can get a copy there.",
+			"There's one copy for me, one copy for you... and one copy for the lawyers."
+		]
+	},
+	{
+		"word": "cook",
+		"translation": "готовить",
+		"examples": [
+			"I never knew you could cook.",
+			"You wouldn't cook in one of these.",
+			"I'll cook for you today then."
+		]
+	},
+	{
+		"word": "close",
+		"translation": "закрывать",
+		"examples": [
+			"I close this presentation with three recommendations.",
+			"The Meeting will close at 6.00 p.m.",
+			"She asked what was being done to close that gap."
+		]
+	},
+	{
+		"word": "change",
+		"translation": "менять",
+		"examples": [
+			"And this is possibly our greatest challenge - to change ourselves.",
+			"Rents tend to change only occasionally.",
+			"It reacts quickly to needs whereas the educational system tends to change very slowly."
+		]
+	},
+	{
+		"word": "carry",
+		"translation": "носить",
+		"examples": [
+			"Then perhaps you should carry me.",
+			"At least they can carry your stuff.",
+			"Both charges carry penalties of death or life imprisonment."
+		]
+	},
+	{
+		"word": "call",
+		"translation": "звонить",
+		"examples": [
+			"What you call infighting, I call motivation.",
+			"You call the safe number, and they call me...",
+			"Don't call us, we'll call you."
+		]
+	},
+	{
+		"word": "discuss",
+		"translation": "обсуждать",
+		"examples": [
+			"Discuss follow-up activities to the publication, such as workshops.",
+			"We have nothing further to discuss.",
+			"You didn't come here to discuss it."
+		]
+	},
+	{
+		"word": "decide",
+		"translation": "решать",
+		"examples": [
+			"I'll decide who teaches my son.",
+			"I think we should all decide together how to do this.",
+			"You can decide never to go through this again."
+		]
+	},
+	{
+		"word": "explain",
+		"translation": "объяснять",
+		"examples": [
+			"I have a hypothesis that may explain that.",
+			"Things have occurred you can't explain.",
+			"You jumped me before I could explain."
+		]
+	},
+	{
+		"word": "slip",
+		"translation": "скользить",
+		"examples": [
+			"I felt something slip from me.",
+			"I knew you'd eventually slip up.",
+			"We must not let this opportunity slip."
+		]
+	},
+	{
+		"word": "cry",
+		"translation": "кричать",
+		"examples": [
+			"He made me promise not to cry.",
+			"Well? You almost made me cry.",
+			"But all you can do is cry."
+		]
+	},
+	{
+		"word": "finish",
+		"translation": "заканчивать",
+		"examples": [
+			"Unless you help finish his story.",
+			"But you only finish in an hour...",
+			"With additional supplies, I can finish it."
+		]
+	},
+	{
+		"word": "admit",
+		"translation": "принять",
+		"examples": [
+			"But I must admit she's beautiful.",
+			"First step is admit you need help.",
+			"Look, I admit it was unexpected."
+		]
+	},
+	{
+		"word": "glow",
+		"translation": "светиться",
+		"examples": [
+			"The particles in the gas are excited and start to glow.",
+			"But I also need to glow tonight.",
+			"Feeling the Lord's heavenly glow."
+		]
+	},
+	{
+		"word": "grate",
+		"translation": "натирать",
+		"examples": [
+			"Well, I'd love to chat, but I have cheese to grate.",
+			"At first it used to grate on me.",
+			"Now it's time to grate a pound of kumquat pith."
+		]
+	},
+	{
+		"word": "grip",
+		"translation": "схватить",
+		"examples": [
+			"Feed me pudding while I grip your wrist in terror.",
+			"Unfortunately, religion keeps a strong grip on hate.",
+			"His hands are huge, I can't get a good grip."
+		]
+	},
+	{
+		"word": "help",
+		"translation": "помогать",
+		"examples": [
+			"You said I need help, so... help.",
+			"I'll help you if you help me.",
+			"And she needs help, so we help."
+		]
+	},
+	{
+		"word": "happen",
+		"translation": "случаться",
+		"examples": [
+			"It can happen anytime, anywhere.",
+			"Unless you want incredible things to happen.",
+			"Anything can happen as naturally as possible."
+		]
+	},
+	{
+		"word": "handle",
+		"translation": "управлять",
+		"examples": [
+			"I thought I could handle it myself.",
+			"Our troops can handle any problems.",
+			"We've nothing that can handle anything like that."
+		]
+	},
+	{
+		"word": "look",
+		"translation": "смотреть",
+		"examples": [
+			"As we look ahead, we face two critical questions.",
+			"Now look how beautiful we look from there.",
+			"You look like you're trying to look laid-back."
+		]
+	},
+	{
+		"word": "live",
+		"translation": "жить",
+		"examples": [
+			"I thought you could live without me.",
+			"We now live in a completely different technological reality.",
+			"On average, women live 4.9 years longer than men."
+		]
+	},
+	{
+		"word": "listen",
+		"translation": "слушать",
+		"examples": [
+			"Though we were just here to listen.",
+			"Probably not, because I won't listen.",
+			"Keep trying to find people who will listen."
+		]
+	},
+	{
+		"word": "like",
+		"translation": "нравится",
+		"examples": [
+			"Girls only like guys who don't like them.",
+			"It eventually only plays songs you like.",
+			"It just seems like you like her more than me."
+		]
+	},
+	{
+		"word": "move",
+		"translation": "двигаться",
+		"examples": [
+			"But despite this, we did not move backward.",
+			"It is time to move beyond profit-making economic models."
+		]
+	},
+	{
+		"word": "manage",
+		"translation": "руководить",
+		"examples": [
+			"No country can manage international migration alone.",
+			"To manage these shocks, households and Governments need better coping strategies."
+		]
+	},
+	{
+		"word": "need",
+		"translation": "нуждаться",
+		"examples": [
+			"I need this revenge like I need water.",
+			"We don't need more studies, we need reform.",
+			"I need resources, I need information."
+		]
+	},
+	{
+		"word": "open",
+		"translation": "открывать",
+		"examples": [
+			"Currently, several options are open.",
+			"During the test no door shall open.",
+			"I had this space designed for open energy and open conversation."
+		]
+	},
+	{
+		"word": "remember",
+		"translation": "помнить",
+		"examples": [
+			"The list is too long to remember.",
+			"To remember my dreams, I turn them into stories",
+			"You're prettier than l remember."
+		]
+	},
+	{
+		"word": "promise",
+		"translation": "обещать",
+		"examples": [
+			"I can't promise you forever.",
+			"It was completely physical, I promise.",
+			"We must reassert our promise to deliver it."
+		]
+	},
+	{
+		"word": "play",
+		"translation": "играть",
+		"examples": [
+			"But you'll play where you play.",
+			"You play when I say play.",
+			"You play nice, I play nice."
+		]
+	},
+	{
+		"word": "suggest",
+		"translation": "предлагать",
+		"examples": [
+			"I might suggest you take that gramophone with you.",
+			"We therefore suggest that this guideline be deleted.",
+			"I suggest you use the ladies room."
+		]
+	},
+	{
+		"word": "study",
+		"translation": "изучать",
+		"examples": [
+			"But you have to study what I do more carefully.",
+			"You need to be strong physically and mentally to study hard.",
+			"I really have to study tomorrow."
+		]
+	},
+	{
+		"word": "stop",
+		"translation": "останавливать",
+		"examples": [
+			"With love... they never stop.",
+			"I say stop, you stop.",
+			"You stop thinking when you stop breathing."
+		]
+	},
+	{
+		"word": "start",
+		"translation": "начинать",
+		"examples": [
+			"You might want to start there.",
+			"You all start getting forgetful, we start shooting you",
+			"Good, we can start, let's start."
+		]
+	},
+	{
+		"word": "travel",
+		"translation": "путешествовать",
+		"examples": [
+			"So glad to travel with you.",
+			"I need to travel a while.",
+			"Women have the furthest to travel to catch up."
+		]
+	},
+	{
+		"word": "talk",
+		"translation": "говорить",
+		"examples": [
+			"I thought we could talk and fight.",
+			"You have your money, so talk.",
+			"At least we know he can talk."
+		]
+	},
+	{
+		"word": "translate",
+		"translation": "переводить",
+		"examples": [
+			"The challenge is now to translate desire into reality.",
+			"I need you to translate every word I say.",
+			"It is time now for the high words to translate into action."
+		]
+	},
+	{
+		"word": "try",
+		"translation": "пытаться",
+		"examples": [
+			"Maybe we could try something I haven't done before.",
+			"Sometimes all you can do is try.",
+			"Well, maybe I should try one."
+		]
+	},
+	{
+		"word": "use",
+		"translation": "использовать",
+		"examples": [
+			"You know how to use that to reach an audience.",
+			"We will learn to use our voices with authority.",
+			"I wanted to use it tonight."
+		]
+	},
+	{
+		"word": "worry",
+		"translation": "беспокоиться",
+		"examples": [
+			"I could worry before I could walk.",
+			"You know we worry, that's all.",
+			"Your philosophy is you worry too much."
+		]
+	},
+	{
+		"word": "work",
+		"translation": "работать",
+		"examples": [
+			"If you had to work, I would understand.",
+			"Listen, we're here to work.",
+			"Some of us have to work for a living."
+		]
+	},
+	{
+		"word": "watch",
+		"translation": "смотреть",
+		"examples": [
+			"You can watch while I do the same.",
+			"You said you would watch me.",
+			"I could watch you eat cake all day."
+		]
+	},
+	{
+		"word": "walk",
+		"translation": "ходить",
+		"examples": [
+			"I can hardly walk and you know it.",
+			"You can't walk through life alone.",
+			"Don't walk until mommy comes home."
+		]
+	},
+	{
+		"word": "wait",
+		"translation": "ждать",
+		"examples": [
+			"You rich people can afford to wait for years.",
+			"You won't have to wait very long.",
+			"This is too important to wait."
+		]
+	}
+]
