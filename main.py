@@ -17,6 +17,7 @@ from sqlalchemy import Integer, String, DateTime
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.pool import NullPool
+from collections import deque
 
 with open('english_words.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
@@ -340,7 +341,8 @@ def incoming():
                     text = message.text
                     if text == "Старт":
                         user.t_last_answer = datetime.datetime.now()
-                        user.time_remind = datetime.datetime.now() + datetime.timedelta(minutes=deltatime_reminder)
+                        user.time_remind = datetime.datetime.now() + datetime.timedelta(
+                            minutes=Settings.deltatime_reminder)
                         session.commit()
                         game.count_all = 0
                         game.count_correct = 0
@@ -355,16 +357,14 @@ def incoming():
                         else:
                             count_example += 1
                     elif text == 'Напомнить позже':
-                        user.time_remind = datetime.datetime.now() + datetime.timedelta(minutes=10)
+                        user.time_remind = datetime.datetime.now() + datetime.timedelta(minutes=Settings.deltatime_reminder)
                         session.commit()
                     else:
                         # ответ пользователя
                         answer(text, game)
+                session.close()
+    return Response(status=200)
 
-
-session.close()
-
-return Response(status=200)
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=80)

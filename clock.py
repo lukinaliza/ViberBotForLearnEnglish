@@ -1,3 +1,4 @@
+import requests
 from Settings import TOKEN
 from viberbot import Api
 from viberbot.api.bot_configuration import BotConfiguration
@@ -8,7 +9,7 @@ import datetime
 bot_configuration = BotConfiguration(
     name='LearnEnglishBot',
     avatar='http://viber.com/avatar.jpg',
-    auth_token=TOKEN 
+    auth_token=TOKEN
 )
 viber = Api(bot_configuration)
 
@@ -58,11 +59,11 @@ def timed_job():
         if datetime.datetime.now() >= u.time_remind:
             viber.send_messages(u.viber_id, [TextMessage(text="Пора учить слова", keyboard=KEYBOARD,
                                                          tracking_data='tracking_data')])
-	session.close()
+    session.close()
 
 
 @sched.scheduled_job('interval', minutes=10)
 def wake_up():
-    r = requests.get('https://lastbotpro.herokuapp.com/')
+    r = requests.get('https://viberbotforen.herokuapp.com/')
 
 sched.start()
