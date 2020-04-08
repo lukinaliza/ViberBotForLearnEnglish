@@ -31,7 +31,9 @@ bot_configuration = BotConfiguration(
 
 viber = Api(bot_configuration)
 
-engine = create_engine('postgres://uwtwamukjlaagw:7ccfda56ce5eb03e7d17e5988645061301a9d37da9e5e935e8e8d41c1bad0021@ec2-54-75-246-118.eu-west-1.compute.amazonaws.com:5432/d2jn4lvglieepl', poolclass=NullPool, echo = False)
+engine = create_engine(
+    'postgres://uwtwamukjlaagw:7ccfda56ce5eb03e7d17e5988645061301a9d37da9e5e935e8e8d41c1bad0021@ec2-54-75-246-118.eu-west-1.compute.amazonaws.com:5432/d2jn4lvglieepl',
+    poolclass=NullPool, echo=False)
 
 Base = declarative_base()
 
@@ -44,7 +46,6 @@ class Users(Base):
     fio = Column(String, nullable=False, default='John Doe')
     viber_id = Column(String, nullable=False, unique=True)
     t_last_answer = Column(DateTime)
-	questionCount_session = Column(Integer, nullable=False, default=0)
     time_remind = Column(DateTime)
 
     words = relationship("Learning", back_populates='user')
@@ -67,7 +68,6 @@ class Learning(Base):
         return f'{self.id}: {self.user_id}[{self.word} / {self.right_answer}]'
 
 
-
 class Game:
     def __init__(self, viber_id):
         self.viber_id = viber_id
@@ -81,7 +81,7 @@ class Settings(Base):
     id = Column(Integer, primary_key=True)
     deltatime_reminder = Column(Integer, nullable=False, default=30)
     session_words = Column(Integer, nullable=False, default=10)
-    rightanswers_tolearnt = Column(Integer, nullable=False, default=20)		
+    rightanswers_tolearnt = Column(Integer, nullable=False, default=20)
 
 
 START_KBD = {
@@ -117,9 +117,10 @@ def next_word(game):
     else:
         correct_answer = session.query(Learning.correct_answer).filter(Learning.user_id == user_id).filter(
             Learning.word == game.word["word"]).first()
-        #if correct_answer > 0:
+        # if correct_answer > 0:
         #   next_word(game)
     session.close()
+
 
 # вопрос
 def question(game):
@@ -128,7 +129,7 @@ def question(game):
     if game.count_all <= Settings.session_words:
         # вывести вопрос
         next_word(game)
-        bot_response = TextMessage(text=f'{game.count_all+1}. Перевод слова: {game.word["word"]}',
+        bot_response = TextMessage(text=f'{game.count_all + 1}. Перевод слова: {game.word["word"]}',
                                    keyboard=CreateKBD(game), tracking_data='tracking_data')
         viber.send_messages(game.viber_id, [bot_response])
     else:
@@ -137,6 +138,7 @@ def question(game):
                                    tracking_data='tracking_data')
         viber.send_messages(game.viber_id, [bot_response])
     session.close()
+
 
 # обработать ответ
 def answer(text, game):
@@ -149,15 +151,15 @@ def answer(text, game):
             Learning.word == game.word["word"]).first()
         learning.correct_answer += 1
         session.commit()
-        bot_response = TextMessage(text=f'Вопрос № {game.count_all+1}. Правильно')
+        bot_response = TextMessage(text=f'Вопрос № {game.count_all + 1}. Правильно')
     else:
-        bot_response = TextMessage(text=f'Вопрос № {game.count_all+1}.Неправильно')
+        bot_response = TextMessage(text=f'Вопрос № {game.count_all + 1}.Неправильно')
     # всего ответов
     game.count_all += 1
     viber.send_messages(game.viber_id, [bot_response])
     session.close()
     question(game)
-	
+
 
 # привести пример
 def example(game, number):
@@ -204,7 +206,7 @@ def CreateKBD(game):
                 "BgMediaType": "picture",
                 "BgLoop": True,
                 "ActionType": "reply",
-                "ActionBody": f"{game.count_all,translation[1]}",
+                "ActionBody": f"{game.count_all, translation[1]}",
                 "ReplyType": "message",
                 "Text": f"{translation[1]}"
             },
@@ -257,12 +259,14 @@ game_usera = {}
 def poisk(viber_id):
     return game_usera[viber_id]
 
+
 class Settings(Base):
     __tablename__ = 'settings'
     id = Column(Integer, primary_key=True)
     deltatime_reminder = Column(Integer, nullable=False, default=30)
     session_words = Column(Integer, nullable=False, default=10)
     rightanswers_tolearnt = Column(Integer, nullable=False, default=20)
+
 
 class TokenHolder():
 
@@ -279,7 +283,7 @@ class TokenHolder():
         i = 0
         while i < num:
             self.q.popleft()
-            i+=1
+            i += 1
 
     def isIn(self, token):
         if token in self.q:
@@ -297,6 +301,7 @@ class TokenHolder():
 # количество примеров перевода
 count_example = 0
 mes_token = TokenHolder()
+
 
 @app.route('/incoming', methods=['POST'])
 def incoming():
@@ -327,38 +332,39 @@ def incoming():
             mes_token.add(viber_request.message_token)
             mes_token.__repr__()
             if mes_token.__len__() > 10000:
-                mes_token.clear(100)	
-			user = session.query(Users).filter(Users.viber_id == viber_request.sender.id).first()
-			game = poisk(user.viber_id)
-			message = viber_request.message
-			if isinstance(message, TextMessage):
-				text = message.text
-				if text == "Старт":
-					user.t_last_answer = datetime.datetime.now()
-					user.time_remind = datetime.datetime.now() + datetime.timedelta(minutes=deltatime_reminder)
-					session.commit()
-					game.count_all = 0
-					game.count_correct = 0
-					question(game)
-				# вызов примера использования
-				elif text == "Пример использования":
-					global count_example
-					example(game, count_example)
-					# проверяем количетво примеров
-					if count_example > len(game.word["examples"]):
-						count_example = 0
-					else:
-						count_example += 1
-				elif text == 'Напомнить позже':
-					user.time_remind = datetime.datetime.now() + datetime.timedelta(minutes=10)
-					session.commit()
-				else:
-					# ответ пользователя
-					answer(text, game)
-    session.close()
-    
-    return Response(status=200)
+                mes_token.clear(100)
+                user = session.query(Users).filter(Users.viber_id == viber_request.sender.id).first()
+                game = poisk(user.viber_id)
+                message = viber_request.message
+                if isinstance(message, TextMessage):
+                    text = message.text
+                    if text == "Старт":
+                        user.t_last_answer = datetime.datetime.now()
+                        user.time_remind = datetime.datetime.now() + datetime.timedelta(minutes=deltatime_reminder)
+                        session.commit()
+                        game.count_all = 0
+                        game.count_correct = 0
+                        question(game)
+                    # вызов примера использования
+                    elif text == "Пример использования":
+                        global count_example
+                        example(game, count_example)
+                        # проверяем количетво примеров
+                        if count_example > len(game.word["examples"]):
+                            count_example = 0
+                        else:
+                            count_example += 1
+                    elif text == 'Напомнить позже':
+                        user.time_remind = datetime.datetime.now() + datetime.timedelta(minutes=10)
+                        session.commit()
+                    else:
+                        # ответ пользователя
+                        answer(text, game)
 
+
+session.close()
+
+return Response(status=200)
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=80)
