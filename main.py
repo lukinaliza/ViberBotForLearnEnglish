@@ -191,9 +191,9 @@ def answer(text, game):
                 Learning.word == game.word["word"]).first()
             learning.correct_answer += 1
             session.commit()
-            bot_response = TextMessage(text=f'Вопрос № {game.count_all + 1}. Ответ верный :)')
+            bot_response = TextMessage(text=f'Вопрос № {game.count_all + 1}. Ответ [{text[1]}] верный :)')
         else:
-            bot_response = TextMessage(text=f'Вопрос № {game.count_all + 1}. Ответ неверный :(')
+            bot_response = TextMessage(text=f'Вопрос № {game.count_all + 1}. Ответ [{text[1]}] неверный :(')
         # всего ответов
         game.count_all += 1
         viber.send_messages(game.viber_id, [bot_response])
@@ -362,11 +362,11 @@ def incoming():
                                                                                                                    '/ ')[
                           19:29]
         time_last_visit = str(session.query(Users.t_last_answer).filter(Users.user_id == user_id).first()).replace(', ',
-                                                                                                                   ': ')[
+                                                                                                                   ':')[
                           31:41]
         text = " Привет! это бот предназначенный для изучения английских слов! \n" \
                f'Нажмите старт чтобы начать:).\n' \
-               f'Вы выучили {count_correct+1} слов \n' \
+               f'Вы выучили {count_correct} слов \n' \
                f'Время последнего посещения: дата {date_last_visit}  время {time_last_visit}'
         viber.send_messages(viber_user, [TextMessage(text=text, keyboard=START_KBD,
                                                      tracking_data='tracking_data')])
