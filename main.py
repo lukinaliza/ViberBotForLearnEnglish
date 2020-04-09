@@ -30,7 +30,8 @@ bot_configuration = BotConfiguration(
 viber = Api(bot_configuration)
 
 engine = create_engine(
-   'postgres://qnakjltyvuqpku:c5f08f5f6d9e839f3a50bb0b84a48a646fed55c9c7709c0a05df1937e6f42703@ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d7dbjfelqdi0jl', poolclass=NullPool, echo=False)
+    'postgres://qnakjltyvuqpku:c5f08f5f6d9e839f3a50bb0b84a48a646fed55c9c7709c0a05df1937e6f42703@ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d7dbjfelqdi0jl',
+    poolclass=NullPool, echo=False)
 # engine = create_engine('sqlite:///test.db', echo=False)
 Base = declarative_base()
 
@@ -119,6 +120,7 @@ def next_word(game):
 
 count = 0
 
+
 def initSettings():
     session = Session()
     set = session.query(Settings).first()
@@ -127,9 +129,11 @@ def initSettings():
         session.add(s)
         session.commit()
 
+
 @app.route("/")
 def hello():
     return render_template('hello.html')
+
 
 @app.route("/settings")
 def settings():
@@ -138,9 +142,11 @@ def settings():
     if set == None:
         initSettings()
     session.close()
-    return render_template('settings.html', deltatime_reminder = set.deltatime_reminder, session_words = set.session_words, rightanswers_tolearnt = set.rightanswers_tolearnt)
+    return render_template('settings.html', deltatime_reminder=set.deltatime_reminder, session_words=set.session_words,
+                           rightanswers_tolearnt=set.rightanswers_tolearnt)
 
-@app.route('/set_settings', methods = [ 'GET'] )
+
+@app.route('/set_settings', methods=['GET'])
 def set_settings():
     session = Session()
     set = session.query(Settings).first()
@@ -156,12 +162,11 @@ def set_settings():
     return response
 
 
-
 # вопрос
 def question(game):
     session = Session()
     set = session.query(Settings).first()
-    sw=set.session_words-1
+    sw = set.session_words - 1
     if game.count_all <= sw:
         # вывести вопрос
         next_word(game)
@@ -331,10 +336,13 @@ class TokenHolder():
         for t in self.q:
             print(t)
 
+
 mes_token = TokenHolder()
-count_example=0
+count_example = 0
 
 init = False
+
+
 @app.route('/incoming', methods=['POST'])
 def incoming():
     Base.metadata.create_all(engine)
@@ -371,41 +379,41 @@ def incoming():
         viber.send_messages(viber_user, [TextMessage(text=text, keyboard=START_KBD,
                                                      tracking_data='tracking_data')])
     if isinstance(viber_request, ViberMessageRequest):
-        if not mes_token.isIn(viber_request.message_token):
-            mes_token.add(viber_request.message_token)
-            mes_token.__repr__()
-            if mes_token.__len__() > 10000:
-                mes_token.clear(100)
-            user = session.query(Users).filter(Users.viber_id == viber_request.sender.id).first()
-            game = poisk(user.viber_id)
-            message = viber_request.message
-            set = session.query(Settings).first()
-            if isinstance(message, TextMessage):
-                text = message.text
-                if text == "Старт":
-                    user.t_last_answer = datetime.datetime.utcnow()
-                    user.time_remind = datetime.datetime.utcnow() + datetime.timedelta(minutes=set.deltatime_reminder)
-                    session.commit()
-                    game.count_all = 0
-                    game.count_correct = 0
-                    question(game)
-                # вызов примера использования
-                elif text == "Пример использования":
-                    global count_example
-                    # проверяем количетво примеров
-                    if count_example >= len(game.word["examples"]):
-                        count_example = 0
-                    else:
-                        count_example += 1
-                    example(game, count_example)
-                elif text == 'Напомнить позже':
-                    user.time_remind = datetime.datetime.utcnow() + datetime.timedelta(minutes=set.deltatime_reminder)
-                    session.commit()
+        # if not mes_token.isIn(viber_request.message_token):
+        # mes_token.add(viber_request.message_token)
+        # mes_token.__repr__()
+        # if mes_token.__len__() > 10000:
+        #     mes_token.clear(100)
+        user = session.query(Users).filter(Users.viber_id == viber_request.sender.id).first()
+        game = poisk(user.viber_id)
+        message = viber_request.message
+        set = session.query(Settings).first()
+        if isinstance(message, TextMessage):
+            text = message.text
+            if text == "Старт":
+                user.t_last_answer = datetime.datetime.utcnow()
+                user.time_remind = datetime.datetime.utcnow() + datetime.timedelta(minutes=set.deltatime_reminder)
+                session.commit()
+                game.count_all = 0
+                game.count_correct = 0
+                question(game)
+            # вызов примера использования
+            elif text == "Пример использования":
+                global count_example
+                # проверяем количетво примеров
+                if count_example >= len(game.word["examples"]):
+                    count_example = 0
                 else:
-                    # ответ пользователя
-                    if answer(text, game):
-                        question(game)
-            session.close()
+                    count_example += 1
+                example(game, count_example)
+            elif text == 'Напомнить позже':
+                user.time_remind = datetime.datetime.utcnow() + datetime.timedelta(minutes=set.deltatime_reminder)
+                session.commit()
+            else:
+                # ответ пользователя
+                if answer(text, game):
+                    question(game)
+        session.close()
     return Response(status=200)
 
 
