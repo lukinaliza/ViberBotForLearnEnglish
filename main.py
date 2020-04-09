@@ -354,16 +354,12 @@ def incoming():
         set = session.query(Settings).first()
         count_correct = session.query(Learning).filter(Learning.user_id == user_id).filter(
             Learning.correct_answer > set.rightanswers_tolearnt).count()
-        date_last_visit = str(session.query(Users.t_last_answer).filter(Users.user_id == user_id).first()).replace(', ',
-                                                                                                                   '/ ')[
-                          19:29]
-        time_last_visit = str(session.query(Users.t_last_answer).filter(Users.user_id == user_id).first()).replace(', ',
-                                                                                                                   ':')[
-                          31:41]
+        v=session.query(Users.t_last_answer).filter(Users.user_id == user_id).first()[0]
+        v.strftime("%Y-%m-%d %H:%M:%S %z")
         text = " Привет! это бот предназначенный для изучения английских слов! \n" \
                f'Нажмите старт чтобы начать:).\n' \
                f'Вы выучили {count_correct} слов \n' \
-               f'Время последнего посещения: дата {date_last_visit}  время {time_last_visit}'
+               f'Время последнего посещения: {str(v)[:19]} '
         viber.send_messages(viber_user, [TextMessage(text=text, keyboard=START_KBD,
                                                      tracking_data='tracking_data')])
     elif isinstance(viber_request, ViberMessageRequest):
