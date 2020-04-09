@@ -128,6 +128,10 @@ def initSettings():
         session.add(s)
         session.commit()
 
+@app.route("/")
+def hello():
+    return render_template('hello.html')
+
 @app.route("/settings")
 def settings():
     session = Session()
@@ -152,10 +156,7 @@ def set_settings():
     response = make_response(string)
     return response
 
-@app.route("/")
-def hello():
-    string = render_template('settings.html')
-    return render_template('hello.html')
+
 
 # вопрос
 def question(game):
