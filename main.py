@@ -30,8 +30,7 @@ bot_configuration = BotConfiguration(
 viber = Api(bot_configuration)
 
 engine = create_engine(
-   'postgres://qnakjltyvuqpku:c5f08f5f6d9e839f3a50bb0b84a48a646fed55c9c7709c0a05df1937e6f42703@ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d7dbjfelqdi0jl',
-   poolclass=NullPool, echo=False)
+   'postgres://qnakjltyvuqpku:c5f08f5f6d9e839f3a50bb0b84a48a646fed55c9c7709c0a05df1937e6f42703@ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d7dbjfelqdi0jl', poolclass=NullPool, echo=False)
 # engine = create_engine('sqlite:///test.db', echo=False)
 Base = declarative_base()
 
@@ -332,9 +331,6 @@ class TokenHolder():
         for t in self.q:
             print(t)
 
-
-# количество примеров перевода
-count_example = 0
 mes_token = TokenHolder()
 
 init = False
