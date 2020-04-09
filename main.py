@@ -332,6 +332,7 @@ class TokenHolder():
             print(t)
 
 mes_token = TokenHolder()
+count_example=0
 
 init = False
 @app.route('/incoming', methods=['POST'])
