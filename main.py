@@ -154,6 +154,7 @@ def set_settings():
 
 @app.route("/")
 def hello():
+    string = render_template('settings.html')
     return render_template('hello.html')
 
 # вопрос
@@ -335,10 +336,14 @@ class TokenHolder():
 count_example = 0
 mes_token = TokenHolder()
 
-
+init = False
 @app.route('/incoming', methods=['POST'])
 def incoming():
     Base.metadata.create_all(engine)
+    global init
+    if (init == False):
+        initSettings()
+        init = True
     # обработка
     session = Session()
     viber_request = viber.parse_request(request.get_data())
