@@ -366,7 +366,7 @@ def incoming():
                f'Время последнего посещения: дата {date_last_visit}  время {time_last_visit}'
         viber.send_messages(viber_user, [TextMessage(text=text, keyboard=START_KBD,
                                                      tracking_data='tracking_data')])
-    if isinstance(viber_request, ViberMessageRequest):
+    elif isinstance(viber_request, ViberMessageRequest):
         if not mes_token.isIn(viber_request.message_token):
             mes_token.add(viber_request.message_token)
             mes_token.__repr__()
