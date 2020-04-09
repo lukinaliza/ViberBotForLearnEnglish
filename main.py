@@ -29,9 +29,9 @@ bot_configuration = BotConfiguration(
 
 viber = Api(bot_configuration)
 
-engine = create_engine(
-   'postgres://qnakjltyvuqpku:c5f08f5f6d9e839f3a50bb0b84a48a646fed55c9c7709c0a05df1937e6f42703@ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d7dbjfelqdi0jl', poolclass=NullPool, echo=False)
-# engine = create_engine('sqlite:///test.db', echo=False)
+# engine = create_engine(
+#    'postgres://qnakjltyvuqpku:c5f08f5f6d9e839f3a50bb0b84a48a646fed55c9c7709c0a05df1937e6f42703@ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d7dbjfelqdi0jl', poolclass=NullPool, echo=False)
+engine = create_engine('sqlite:///test.db', echo=False)
 Base = declarative_base()
 
 Session = sessionmaker(engine)
@@ -235,7 +235,7 @@ def CreateKBD(game):
                 "BgMediaType": "picture",
                 "BgLoop": True,
                 "ActionType": "reply",
-                "ActionBody": f"{game.count_all, translation[0]}",
+                "ActionBody": f"{[game.count_all, translation[0]]}",
                 "ReplyType": "message",
                 "Text": f"{translation[0]}"
             },
@@ -259,7 +259,7 @@ def CreateKBD(game):
                 "BgMediaType": "picture",
                 "BgLoop": True,
                 "ActionType": "reply",
-                "ActionBody": f"{game.count_all, translation[2]}",
+                "ActionBody": f"{[game.count_all, translation[2]]}",
                 "ReplyType": "message",
                 "Text": f"{translation[2]}"
             },
@@ -271,7 +271,7 @@ def CreateKBD(game):
                 "BgMediaType": "picture",
                 "BgLoop": True,
                 "ActionType": "reply",
-                "ActionBody": f"{game.count_all, translation[3]}",
+                "ActionBody": f"{[game.count_all, translation[3]]}",
                 "ReplyType": "message",
                 "Text": f"{translation[3]}"
             },
